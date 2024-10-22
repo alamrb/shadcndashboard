@@ -49,7 +49,7 @@ export default function RootLayout({
           {/* <AppsidebarTwo/> */}
           {/* <AppSidebarMenuAction/> */}
           <SidebarInset>
-            {children}
+                <main>{children}</main>
           </SidebarInset>
           {/* <main>
             <SidebarTrigger/>
