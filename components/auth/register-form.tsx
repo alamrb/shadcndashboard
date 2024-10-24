@@ -9,7 +9,7 @@ import { CardWrapper } from "./card-wrapper";
 
 import { RegisterSchema } from "@/schemas";
 
-import { login } from "@/actions/login";
+import { register } from "@/actions/register";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 import { Button } from "../ui/button";
@@ -49,7 +49,7 @@ export const RegisterForm = () => {
         setSuccess("");
 
         startTransition(() => {
-            login(values)
+            register(values)
                 .then((data) => {
                     setError(data.error)
                     setSuccess(data.success)
