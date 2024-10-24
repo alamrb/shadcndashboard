@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { CardWrapper } from "./card-wrapper";
 
-import { LoginSchema } from "@/schemas";
+import { RegisterSchema } from "@/schemas";
 
 import { login } from "@/actions/login";
 import { FormError } from "../form-error";
@@ -23,25 +23,26 @@ import {
 } from "../ui/form";
 
 
-export const Loginform = () => {
+export const RegisterForm = () => {
 
     const [error, setError] = useState<string | undefined>("");
     const [success, setSuccess] = useState<string | undefined>("");
 
     const [isPending, startTransition] = useTransition()
 
-    const form = useForm<z.infer<typeof LoginSchema>>({
-        resolver: zodResolver(LoginSchema),
+    const form = useForm<z.infer<typeof RegisterSchema>>({
+        resolver: zodResolver(RegisterSchema),
         defaultValues: {
             email: "",
-            password:""
+            password: "",
+            name:"",
         }
     }
     
     )
     
 
-    const onSubmit = (values:z.infer<typeof LoginSchema>) => {
+    const onSubmit = (values:z.infer<typeof RegisterSchema>) => {
         // login(values)
 
         setError("");
@@ -61,9 +62,9 @@ export const Loginform = () => {
     
     return (
         <CardWrapper
-            headerLabel="Welcome Back to the Naria Login"
-            backButtonLabel="Don't have an account?"
-            backButtonHref="/auth/register"
+            headerLabel="Create an account"
+            backButtonLabel="Already have an account"
+            backButtonHref="/auth/login"
             showSocial
         >
             <Form {...form}>
@@ -74,6 +75,28 @@ export const Loginform = () => {
 
                      <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
                     <div className="space-y-4">
+
+                        <FormField control={form.control}
+                            name="name"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Name</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                        
+                                            {...field}
+                                            disabled={isPending}
+                                            placeholder="John Doe"
+                                            type="text"
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        >
+                            
+                        </FormField>
+
                         <FormField control={form.control}
                             name="email"
                             render={({ field }) => (
@@ -123,7 +146,7 @@ export const Loginform = () => {
                     <FormSuccess message={success}/>
                     
                     <Button disabled={isPending} type="submit" className="w-full">
-                         Login       
+                         Register       
                     </Button>
 
                 </form>

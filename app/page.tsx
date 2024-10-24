@@ -14,7 +14,7 @@ export default function Home() {
       <div className="space-y-6 text-center">
         <h1 className={cn("font-semibold scroll-m-20 text-6xl tracking-tight lg:text-5xl",
           font.className)}>Naria SEO</h1>
-        <p className="text-white text-lg">A Simple authentation service</p>
+        <p className={cn("text-white text-lg", font.className)}>A Simple authentation service</p>
         <LoginButton>
           <Button variant={"secondary"} size={"lg"}>
           Sign In
