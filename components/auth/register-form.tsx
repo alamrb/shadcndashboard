@@ -41,13 +41,11 @@ export const RegisterForm = () => {
     
     )
     
-
     const onSubmit = (values:z.infer<typeof RegisterSchema>) => {
         // login(values)
 
         setError("");
         setSuccess("");
-
         startTransition(() => {
             register(values)
                 .then((data) => {
@@ -117,9 +115,6 @@ export const RegisterForm = () => {
                         >
                             
                         </FormField>
-                        
-
-
                         <FormField control={form.control}
                             name="password"
                             render={({ field }) => (
